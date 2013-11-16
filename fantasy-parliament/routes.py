@@ -1,7 +1,6 @@
 # coding=utf-8
 
 from users import get_user, upsert_user
-from data import getData
 from flask import Flask, request, render_template
 from bson.json_util import dumps
 
