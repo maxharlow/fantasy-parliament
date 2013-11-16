@@ -17,7 +17,7 @@ $(function () {
     });
 
     $('#save-mps').click(function () {
-        var mps = _.map(selectedMPs.children(':selected'), function (mp) {
+        var mps = _.map(selectedMPs.children(), function (mp) {
             return parseInt(mp.value);
         });
 
