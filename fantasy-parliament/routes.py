@@ -1,7 +1,7 @@
 # coding=utf-8
 
+from score import calculate_score
 from users import get_user, upsert_user, get_users
-from data import getData
 from flask import Flask, request, render_template
 from bson.json_util import dumps
 
@@ -16,10 +16,6 @@ def leaderboard():
     users = get_users().sort('score', -1)
     return render_template('leaderboard.html', users=users)
 
-@application.route('/test')
-def test():
-    return getData()
-
 @application.route('/user/<email>', methods=['GET', 'PUT'])
 def user(email):
     if request.method == 'PUT':
@@ -27,3 +23,9 @@ def user(email):
     else:
         user = get_user(email) or {}
         return dumps(user)
+
+@application.route('/calculate')
+def calculate():
+    for user in get_users():
+        calculate_score(user)
+    return ''

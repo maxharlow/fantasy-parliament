@@ -1,13 +1,18 @@
+# coding=utf-8
+
 from pymongo import MongoClient
 
 def db():
-    return MongoClient().fantasy_parliament.users
+    client = MongoClient('dharma.mongohq.com', 10018)
+    db = client['fantasy-parliament']
+    db.authenticate('fp', 'rewired')
+    return db
 
 def upsert_user(email, user):
-    return db().update({"email": email}, user, upsert = True)
+    return db().users.update({"email": email}, user, upsert = True)
 
 def get_user(email):
-    return db().find_one({"email": email})
+    return db().users.find_one({"email": email})
 
 def get_users():
-    return db().find()
+    return db().users.find()
