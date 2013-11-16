@@ -1,8 +1,4 @@
-$.ajaxSetup({
-    'beforeSend': function (xhr, settings) {
-        settings.data['email'] = $('#email').val();
-    }
-});
+var twfyKey = '';
 
 $(function () {
     var availableMPs = $('#available-mps');
@@ -22,4 +18,6 @@ $(function () {
 
     $('#save-mps').click(function () {
     });
+
+    $.getJSON('
 });
