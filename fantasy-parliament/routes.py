@@ -2,7 +2,8 @@
 
 from users import get_user, upsert_user
 from data import getData
-from flask import Flask, render_template
+from flask import Flask, request, render_template
+from bson.json_util import dumps
 
 application = Flask(__name__)
 
@@ -17,7 +18,6 @@ def test():
 @application.route('/user/<email>', methods=['GET', 'PUT'])
 def user(email):
     if request.method == 'PUT':
-        mps = ['bob', 'alice'] # TODO get this from request body
-        return upsert_user(email, mps)
+        return dumps(upsert_user(request.json))
     else:
-        return get_user(email)
+        return dumps(get_user(email))

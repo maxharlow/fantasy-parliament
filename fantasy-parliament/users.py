@@ -1,5 +1,10 @@
-def upsert_user(email, mps):
-    return 'Added user %s' % email
+from pymongo import MongoClient
+
+def db():
+    return MongoClient().fantasy_parliament.users
+
+def upsert_user(user):
+    return db().insert(user)
 
 def get_user(email):
-    return 'User is %s' % email
+    return db().find_one({"email": email})
