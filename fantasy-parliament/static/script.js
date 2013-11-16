@@ -30,6 +30,12 @@ $(function () {
         });
     });
 
+    $('#email').change(function () {
+        window.localStorage['email'] = this.value;
+    });
+
+    $('#email').val(window.localStorage['email']);
+
     twfy.query('getMPs', {'callback': 'populate_mps'});
 });
 
