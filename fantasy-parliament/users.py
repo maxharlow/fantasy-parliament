@@ -8,3 +8,6 @@ def upsert_user(email, user):
 
 def get_user(email):
     return db().find_one({"email": email})
+
+def get_users():
+    return db().find()

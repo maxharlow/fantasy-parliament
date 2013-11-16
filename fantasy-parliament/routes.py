@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from users import get_user, upsert_user
+from users import get_user, upsert_user, get_users
 from data import getData
 from flask import Flask, request, render_template
 from bson.json_util import dumps
@@ -13,7 +13,7 @@ def home():
 
 @application.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html')
+    return render_template('leaderboard.html', users=get_users())
 
 @application.route('/test')
 def test():
