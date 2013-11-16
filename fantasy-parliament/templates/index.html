@@ -20,20 +20,19 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Select cabinet</a></li>
-            <li><a href="#">Leaderboard</a></li>
+            <li class="active"><a href="/">Select cabinet</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="container">
-        <input class="form-control" id="email" type="text" name="email" placeholder="Email address" />
-
-        <h1>Select cabinet</h1>
-
+        <label for="email">Email</label>
+        <input class="form-control" id="email" type="text" name="email" placeholder="you@example.com" />
         <div class="row">
             <div class="col-xs-4">
+            	<h2>Available MPs</h2>
                 <select class="list-mps form-control" id="available-mps" multiple>
                 </select>
             </div>
@@ -48,22 +47,31 @@
             </div>
 
             <div class="col-xs-4">
+            	<h2>Your cabinet</h2>
                 <select class="list-mps form-control" id="selected-mps" multiple>
                 </select>
             </div>
         </div>
 
-        <div class="col-xs-12 save">
-            <button type="submit" class="btn btn-lg" id="save-mps">
-                <span class="glyphicon glyphicon-save"></span> Save
-            </button>
-        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div id="details">
+                    <img class="mp-photo" />
+                    <h2>
+                        <span class="mp-details" data-detail="first_name"></span>
+                        <span class="mp-details" data-detail="last_name"></span>
+                    </h2>
+                    <b>Party:</b> <span class="mp-details" data-detail="party"></span><br />
+                    <b>Constituency:</b> <span class="mp-details" data-detail="constituency"></span><br />
+                    <b>Date elected:</b> <span class="mp-details" data-detail="entered_house"></span>
+                </div>
+            </div>
 
-        <div class="col-xs-12">
-            <img class="mp-photo" />
-            <h2 class="mp-details" data-detail="name"></h2>
-            <b>Party:</b> <span class="mp-details" data-detail="party"></span><br />
-            <b>Constituency:</b> <span class="mp-details" data-detail="constituency"></span>
+            <div class="col-xs-6 save">
+                <button type="submit" class="btn btn-lg" id="save-mps">
+                    <span class="glyphicon glyphicon-save"></span> Save
+                </button>
+            </div>
         </div>
 
     </div><!-- /.container -->
@@ -71,7 +79,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="static/underscore.js"></script>
     <script src="static/twfyapi.js"></script>
-    <script src="static/script.js"></script>
+    <script src="static/index.js"></script>
 
 </body>
 </html>

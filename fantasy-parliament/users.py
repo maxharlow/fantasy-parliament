@@ -8,9 +8,11 @@ def db():
     db.authenticate('fp', 'rewired')
     return db
 
-def upsert_user(user):
-    print str(user)
-    return db().users.insert(user)
+def upsert_user(email, user):
+    return db().users.update({"email": email}, user, upsert = True)
 
 def get_user(email):
     return db().users.find_one({"email": email})
+
+def get_users():
+    return db().users.find()

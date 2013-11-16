@@ -1,5 +1,6 @@
 body {
     padding-top: 60px;
+    padding-bottom: 10px;
 }
 
 .list-mps {
@@ -50,4 +51,8 @@ option[data-party="Sinn Fein"] {
     float: left;
     margin-right: 10px;
     width: 100px;
+}
+
+#details {
+    display: none;
 }
