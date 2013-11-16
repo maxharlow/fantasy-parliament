@@ -46,7 +46,12 @@ var userMPs = [];
 twfy.query('getMPs', {'callback': 'populate_mps'});
 
 function populate_mps(mps) {
-    $.each(mps, function () {
+	var sortedMPs = _.sortBy(mps, function(each) {
+		// drop the first name
+		return each.name.replace(/^\w+ /, '');
+	});
+
+    $.each(sortedMPs, function () {
         var ele = $('<option value="' + this.person_id + '" data-party="' + this.party + '">' + this.name + ' [' + this.party + ']</option>');
         if (userMPs.indexOf(this.person_id) !== -1) {
             selectedMPs.append(ele);
