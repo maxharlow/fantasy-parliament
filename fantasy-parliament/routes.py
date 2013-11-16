@@ -22,6 +22,7 @@ def test():
 @application.route('/user/<email>', methods=['GET', 'PUT'])
 def user(email):
     if request.method == 'PUT':
-        return dumps(upsert_user(email, request.json))
+        return if dumps(upsert_user(email, request.json))
     else:
-        return dumps(get_user(email))
+        user = get_user(email) or {}
+        return dumps(user)
