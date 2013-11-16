@@ -25,18 +25,21 @@ class update_scores(object):
             self.voting, self.speak, self.divisions=search_Division(foo, self.voting, self.speak, self.divisions,date_string)
             now_date=now_date + timedelta(days=1)        
     
-    def calculate_Score(self, id):
+    def vote_score(self, id):
         if id in self.voting:
-            vote_score=len(self.voting[id])
+            score=len(self.voting[id])
         else:
-            vote_score=0
+            score=0
         
+        return score
+
+    def speak_score(self, id):
         if id in self.speak:
-            speak_score=len(self.speak[id])
+            score=len(self.speak[id])
         else:
-            speak_score=0
-        return vote_score, speak_score
-            
+            score=0
+        return score
+        
             
 class vote(object):
     def __init__(self, datestr, div_id, vote_type):
