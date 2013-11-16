@@ -77,4 +77,6 @@ function populate_details(person) {
     $('.mp-details').each(function () {
         $(this).html(person[$(this).data('detail')]);
     });
+
+    $('#details').fadeIn();
 }
