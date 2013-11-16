@@ -53,21 +53,25 @@
             </div>
         </div>
 
-        <div class="col-xs-12 save">
-            <button type="submit" class="btn btn-lg" id="save-mps">
-                <span class="glyphicon glyphicon-save"></span> Save
-            </button>
-        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div id="details">
+                    <img class="mp-photo" />
+                    <h2>
+                        <span class="mp-details" data-detail="first_name"></span>
+                        <span class="mp-details" data-detail="last_name"></span>
+                    </h2>
+                    <b>Party:</b> <span class="mp-details" data-detail="party"></span><br />
+                    <b>Constituency:</b> <span class="mp-details" data-detail="constituency"></span><br />
+                    <b>Date elected:</b> <span class="mp-details" data-detail="entered_house"></span>
+                </div>
+            </div>
 
-        <div class="col-xs-12" id="details">
-            <img class="mp-photo" />
-            <h2>
-                <span class="mp-details" data-detail="first_name"></span>
-                <span class="mp-details" data-detail="last_name"></span>
-            </h2>
-            <b>Party:</b> <span class="mp-details" data-detail="party"></span><br />
-            <b>Constituency:</b> <span class="mp-details" data-detail="constituency"></span><br />
-            <b>Date elected:</b> <span class="mp-details" data-detail="entered_house"></span>
+            <div class="col-xs-6 save">
+                <button type="submit" class="btn btn-lg" id="save-mps">
+                    <span class="glyphicon glyphicon-save"></span> Save
+                </button>
+            </div>
         </div>
 
     </div><!-- /.container -->
