@@ -29,6 +29,7 @@ $('#save-mps').click(function () {
     $.ajax({
         url: '/user/' + email,
         type: 'PUT',
+        contentType: 'application/json',
         data: JSON.stringify({
             'email': email,
             'mps': mps
@@ -44,13 +45,12 @@ $('#email').val(window.localStorage['email']);
 
 var userMPs = [];
 
-/*$.getJSON('/user/' + $('#email').val())
-    .then(function () {
-        var mps = [11323];
+$.getJSON('/user/' + $('#email').val())
+    .then(function (data) {
+        userMPs = data.mps;
+        twfy.query('getMPs', {'callback': 'populate_mps'});
+    });
 
-    });*/
-
-twfy.query('getMPs', {'callback': 'populate_mps'});
 
 function populate_mps(mps) {
 	var sortedMPs = _.sortBy(mps, function(each) {
@@ -61,7 +61,7 @@ function populate_mps(mps) {
     $.each(sortedMPs, function () {
         var ele = $('<option value="' + this.person_id + '" data-party="' + this.party + '">' + this.name + ' [' + this.party + ']</option>');
 
-        if (userMPs.indexOf(this.person_id) !== -1) {
+        if (userMPs.indexOf(parseInt(this.person_id)) !== -1) {
             selectedMPs.append(ele);
         } else {
             availableMPs.append(ele);
