@@ -7,6 +7,10 @@ body {
     height: 300px !important;
 }
 
+.controls {
+    padding-top: 150px;
+}
+
 .controls > button {
     margin: 10px auto;
     display: block;
