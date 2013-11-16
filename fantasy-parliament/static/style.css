@@ -63,3 +63,17 @@ option[data-party="Sinn Fein"] {
 	background-color: #D8EEFE;
 	cursor: pointer;
 }
+
+#scoring dt {
+	background-color: #cccccc;
+}
+#scoring dd {
+	background-color: #eeeeee;
+}
+#scoring .scoreName {
+	padding-left: 15px;
+	font-style: italic;
+}
+#scoring .scoreValue {
+	float: right;
+}
