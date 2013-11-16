@@ -29,3 +29,7 @@ def calculate():
     for user in get_users():
         calculate_score(user)
     return ''
+        
+@application.route('/user/<email>/scoring')
+def user_scoring(email):
+	return '"hello"'

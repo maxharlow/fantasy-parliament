@@ -28,27 +28,35 @@
     </div>
 
     <div class="container">
-        <h1>Leaderboard</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Email address</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
-                    <tr>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.score }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <h1>Leaderboard</h1>
+        <div class="row">
+        	<div class="col-xs-6">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Email address</th>
+							<th>Score</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr class="user">
+								<td class="email">{{ user.email }}</td>
+								<td>{{ user.score }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-6" id="scoring">
+				foo
+			</div>
+		</div>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="static/underscore.js"></script>
     <script src="static/twfyapi.js"></script>
+    <script src="static/leaderboard.js"></script>
 </body>
 </html>
