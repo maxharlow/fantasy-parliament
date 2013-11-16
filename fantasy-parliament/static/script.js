@@ -30,13 +30,15 @@ $('#save-mps').click(function () {
     var mps = _.map(selectedMPs.children(), function (mp) {
         return parseInt(mp.value);
     });
+    var email = $('#email').val();
 
     $.ajax({
-        url: '/user/' + $('#email').val(),
+        url: '/user/' + email,
         type: 'PUT',
-        data: {
+        data: JSON.stringify({
+            'email': email,
             'mps': mps
-        }
+        })
     });
 });
 
