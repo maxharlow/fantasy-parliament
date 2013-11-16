@@ -15,6 +15,17 @@ $('#remove-mps').click(function () {
     });
 });
 
+$('#available-mps, #selected-mps').change(function () {
+    var option = $(this).children(':selected').first();
+    var mp = option.data('mp');
+
+    $('.mp-details').each(function () {
+        $(this).html(mp[$(this).data('detail')]);
+    });
+
+    twfy.query('getPerson', {'callback': 'populate_photo', 'id': mp['person_id']});
+});
+
 $('#save-mps').click(function () {
     var mps = _.map(selectedMPs.children(), function (mp) {
         return parseInt(mp.value);
@@ -48,10 +59,16 @@ twfy.query('getMPs', {'callback': 'populate_mps'});
 function populate_mps(mps) {
     $.each(mps, function () {
         var ele = $('<option value="' + this.person_id + '" data-party="' + this.party + '">' + this.name + ' [' + this.party + ']</option>');
+        ele.data('mp', this);
+
         if (userMPs.indexOf(this.person_id) !== -1) {
             selectedMPs.append(ele);
         } else {
             availableMPs.append(ele);
         }
     });
+}
+
+function populate_photo(person) {
+    $('.mp-photo').attr('src', 'http://www.theyworkforyou.com' + person[0].image);
 }
