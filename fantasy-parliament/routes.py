@@ -13,7 +13,8 @@ def home():
 
 @application.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html', users=get_users().sort({'score': -1}))
+    users = get_users().sort('score', -1)
+    return render_template('leaderboard.html', users=users)
 
 @application.route('/test')
 def test():
