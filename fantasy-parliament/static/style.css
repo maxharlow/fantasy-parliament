@@ -15,3 +15,34 @@ body {
     padding-top: 10px;
     text-align: right;
 }
+
+/* http://blog.richardallen.co.uk/uk-political-party-web-colours/ */
+option[data-party="Labour"] {
+	background-color: #d50000;
+	color: white;
+}
+option[data-party="Conservative"] {
+	background-color: #0087dc;
+	color: white;
+}
+option[data-party="Liberal Democrat"] {
+	background-color: #FDBB30;
+	color: black;
+}
+option[data-party="Scottish National Party"] {
+	background-color: #FFF95D;
+	color: black;
+}
+option[data-party="Green"] {
+	background-color: #008066;
+	color: white;
+}
+option[data-party="Plaid Cymru"] {
+	background-color: #3F8428;
+	color: white;
+}
+option[data-party="Sinn Fein"] {
+	background-color: #006837;
+	color: white;
+}
+
