@@ -17,6 +17,17 @@ $(function () {
     });
 
     $('#save-mps').click(function () {
+        var mps = _.map(selectedMPs.children(':selected'), function (mp) {
+            return parseInt(mp.value);
+        });
+
+        $.ajax({
+            url: '/user/' + $('#email').val(),
+            type: 'PUT',
+            data: {
+                'mps': mps
+            }
+        });
     });
 
     twfy.query('getMPs', {'callback': 'populate_mps'});
