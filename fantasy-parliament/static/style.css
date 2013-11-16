@@ -56,3 +56,10 @@ option[data-party="Sinn Fein"] {
 #details {
     display: none;
 }
+
+
+
+#leaderboard .user:hover td {
+	background-color: #D8EEFE;
+	cursor: pointer;
+}
