@@ -52,7 +52,7 @@ var userMPs = [];
     } else {
         $.getJSON('/user/' + email)
             .then(function (data) {
-                userMPs = data.mps;
+                userMPs = data.mps || [];
                 twfy.query('getMPs', {'callback': 'populate_mps'});
             });
     }
