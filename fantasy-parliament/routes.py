@@ -11,6 +11,10 @@ application = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@application.route('/leaderboard')
+def leaderboard():
+    return render_template('leaderboard.html')
+
 @application.route('/test')
 def test():
     return getData()
