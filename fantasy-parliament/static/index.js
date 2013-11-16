@@ -45,12 +45,18 @@ $('#email').val(window.localStorage['email']);
 
 var userMPs = [];
 
-$.getJSON('/user/' + $('#email').val())
-    .then(function (data) {
-        userMPs = data.mps;
+(function () {
+    var email = $('#email').val();
+    if (!email) {
         twfy.query('getMPs', {'callback': 'populate_mps'});
-    });
-
+    } else {
+        $.getJSON('/user/' + email)
+            .then(function (data) {
+                userMPs = data.mps;
+                twfy.query('getMPs', {'callback': 'populate_mps'});
+            });
+    }
+})();
 
 function populate_mps(mps) {
 	var sortedMPs = _.sortBy(mps, function(each) {
