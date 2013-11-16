@@ -1,4 +1,4 @@
-var twfyKey = '';
+twfy = new TWFYAPI.TWFYAPI('FFc3vfGRyyBgCnVqegDY3Ujh');
 
 $(function () {
     var availableMPs = $('#available-mps');
@@ -19,5 +19,11 @@ $(function () {
     $('#save-mps').click(function () {
     });
 
-    $.getJSON('
+    twfy.query('getMPs', {'callback': 'populate_mps'});
 });
+
+function populate_mps(mps) {
+    $.each(mps, function () {
+        $('#available-mps').append($('<option value="' + this.person_id + '">' + this.name + '</option>'));
+    });
+}
