@@ -2,13 +2,11 @@ from urllib2 import urlopen
 from datetime import datetime, timedelta
 from lxml import etree
 
-
-
 PP_URL='http://ukparse.kforge.net/parldata/scrapedxml/debates/'
 
 class update_scores(object):
     def __init__(self, start_year, start_month, start_day):
-        self.start='%d-%d-%d' %(start_year, start_month, start_day)
+        self.start='%d-%d-%d' % (start_year, start_month, start_day)
         self.voting={} #matches speaker with list of vote objects
         self.speak={} #matches speaker with list of speech url
         self.divisions={} #matches url with ayes, noes
@@ -75,8 +73,4 @@ def search_Division(xml_string, voting, speak, division_dict, datestr):
                 speak[speaker].append(speech.get('url')[38:])
             else:
                 speak[speaker]=[speech.get('url')[38:]]
-    return voting, speak, division_dict     
-
-
-        
-        
+    return voting, speak, division_dict
