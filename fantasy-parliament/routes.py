@@ -13,7 +13,7 @@ def home():
 
 @application.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html', users=get_users())
+    return render_template('leaderboard.html', users=get_users().sort({'score': -1}))
 
 @application.route('/test')
 def test():
@@ -22,7 +22,7 @@ def test():
 @application.route('/user/<email>', methods=['GET', 'PUT'])
 def user(email):
     if request.method == 'PUT':
-        return if dumps(upsert_user(email, request.json))
+        return dumps(upsert_user(email, request.json))
     else:
         user = get_user(email) or {}
         return dumps(user)
