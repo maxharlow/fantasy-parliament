@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/style.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="static/script.js"></script>
 </head>
 <body>
 
@@ -30,7 +31,7 @@
     </div>
 
     <div class="container">
-        <input class="form-control" type="text" name="email" placeholder="Email address" />
+        <input class="form-control" id="email" type="text" name="email" placeholder="Email address" />
 
         <h1>Select cabinet</h1>
 
@@ -50,10 +51,10 @@
             </div>
 
             <div class="col-xs-4 controls">
-                <button type="button" class="btn btn-lg">
+                <button type="button" class="btn btn-lg" id="remove-mps">
                     <span class="glyphicon glyphicon-chevron-left"></span> Remove
                 </button>
-                <button type="button" class="btn btn-lg">
+                <button type="button" class="btn btn-lg" id="add-mps">
                     <span class="glyphicon glyphicon-chevron-right"></span> Add
                 </button>
             </div>
@@ -65,7 +66,7 @@
         </div>
 
         <div class="col-xs-12 save">
-            <button type="submit" class="btn btn-lg">
+            <button type="submit" class="btn btn-lg" id="save-mps">
                 <span class="glyphicon glyphicon-save"></span> Save
             </button>
         </div>
