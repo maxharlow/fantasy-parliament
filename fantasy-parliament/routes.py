@@ -32,4 +32,4 @@ def calculate():
         
 @application.route('/user/<email>/scoring')
 def user_scoring(email):
-	return '"hello"'
+	return dumps(get_user(email)['score_breakdown'])
