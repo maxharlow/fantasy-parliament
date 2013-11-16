@@ -1,6 +1,7 @@
 # coding=utf-8
 
-from users import get_user, upsert_user
+from score import calculate_score
+from users import get_user, upsert_user, get_users
 from flask import Flask, request, render_template
 from bson.json_util import dumps
 
@@ -22,3 +23,9 @@ def user(email):
     else:
         user = get_user(email) or {}
         return dumps(user)
+
+@application.route('/calculate')
+def calculate():
+    for user in get_users():
+        calculate_score(user)
+    return ''
