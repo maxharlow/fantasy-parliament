@@ -46,3 +46,8 @@ option[data-party="Sinn Fein"] {
 	color: white;
 }
 
+.mp-photo {
+    float: left;
+    margin-right: 10px;
+    width: 100px;
+}

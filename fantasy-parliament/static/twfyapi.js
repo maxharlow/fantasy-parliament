@@ -73,6 +73,8 @@ var TWFYAPI =
 
 };
 
+TWFYAPI_URL = "http://www.theyworkforyou.com/api/";
+
 
 var TWFYAPI_Request =
 {
@@ -177,7 +179,7 @@ var TWFYAPI_Request =
 		// If the function exists, return its URL
 		if (valid_functions[func] != undefined)
 		{
-			return TWFYAPI_Request.URL + func;
+			return TWFYAPI_URL + func;
 		}
 		else
 		{
@@ -218,7 +220,7 @@ var TWFYAPI_Request =
 			"convertURL"        : ["url"],
 			"getConstituency"   : ["postcode"],
 			"getConstituencies" : [],
-			"getPerson"         : ["id"],
+			"getPerson"         : [],
 			"getMP"             : [],
 			"getMPInfo"         : ["id"],
 			"getMPs"            : [],
