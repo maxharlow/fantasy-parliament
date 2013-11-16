@@ -3,15 +3,21 @@ twfy = new TWFYAPI.TWFYAPI('FFc3vfGRyyBgCnVqegDY3Ujh');
 var availableMPs = $('#available-mps');
 var selectedMPs = $('#selected-mps');
 
+function updateMPCount() {
+	$('#mpcount').html(selectedMPs.children().length)
+};
+
 $('#add-mps').click(function () {
     availableMPs.children(':selected').each(function () {
         selectedMPs.append(this);
+        updateMPCount();
     });
 });
 
 $('#remove-mps').click(function () {
     selectedMPs.children(':selected').each(function () {
         availableMPs.append(this);
+        updateMPCount();
     });
 });
 
@@ -26,15 +32,19 @@ $('#save-mps').click(function () {
     });
     var email = $('#email').val();
 
-    $.ajax({
-        url: '/user/' + email,
-        type: 'PUT',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'email': email,
-            'mps': mps
-        })
-    });
+	if (mps.length > 12)
+		alert('Reduce the size of your cabinet!');
+	else {
+		$.ajax({
+			url: '/user/' + email,
+			type: 'PUT',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				'email': email,
+				'mps': mps
+			})
+		});
+	}
 });
 
 $('#email').change(function () {
@@ -73,6 +83,8 @@ function populate_mps(mps) {
             availableMPs.append(ele);
         }
     });
+
+    updateMPCount();
 }
 
 function populate_details(person) {
