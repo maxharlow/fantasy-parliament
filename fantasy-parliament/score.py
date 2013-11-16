@@ -4,7 +4,7 @@ from parser import update_scores
 def test(mp_id):
     return 1
 
-parser_scorer = update_scores(2013, 10, 16)
+parser_scorer = update_scores(2013, 09, 16)
 
 scorers = [test, parser_scorer.vote_score, parser_scorer.speak_score]
 
