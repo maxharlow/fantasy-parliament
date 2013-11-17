@@ -48,17 +48,16 @@ body {
 	background-color: #cccccc;
 }
 #scoring dd {
-        font-size: 25px;
 	background-color: #eeeeee;
 }
 #scoring dd[data-type="speech"]:before {
-        content: url('https://github.global.ssl.fastly.net/images/icons/emoji/speech_balloon.png');
+        content: url('speech.png');
 }
 #scoring dd[data-type="absence"]:before {
-        content: url('https://github.global.ssl.fastly.net/images/icons/emoji/cry.png');
+        content: url('absence.png');
 }
 #scoring dd[data-type="vote"]:before {
-        content: url('https://github.global.ssl.fastly.net/images/icons/emoji/+1.png');
+        content: url('vote.png');
 }
 #scoring .scoreName {
 	padding-left: 15px;
