@@ -1,6 +1,6 @@
 twfy = new TWFYAPI.TWFYAPI('FFc3vfGRyyBgCnVqegDY3Ujh');
 
-const budget = 250000;
+const budget = 120000;
 const maxCabinet = 12;
 var availableMPs = $('#available-mps');
 var selectedMPs = $('#selected-mps');
@@ -72,7 +72,7 @@ function populate_mps(expenses, userMPs) {
 
     userMPs = userMPs || [];
 
-    _.each(mps, function (mp) {
+    _.each(_.sortBy(mps, function (mp) { return mp.last_name; }), function (mp) {
         mp.expenses = getExpenses(expenses, mp.person_id);
 
         // someone's image is undefined
