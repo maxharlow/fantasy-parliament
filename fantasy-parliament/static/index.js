@@ -54,10 +54,10 @@ $('#email').val(window.localStorage['email']);
 
 $('.filter-name').keyup(function () {
     if (this.value) {
-        $('.mp').hide();
-        $('.mp[data-name^="' + this.value + '"]').show();
+        $('#available-mps .mp').hide();
+        $('#available-mps .mp[data-name^="' + this.value + '"]').show();
     } else {
-        $('.mp').show();
+        $('#available-mps .mp').show();
     }
 });
 
@@ -97,7 +97,7 @@ function populate_mps(expenses, userMPs) {
     });
 
     $('.filter-party').change(function () {
-        $('.mp[data-party="' + this.value + '"]').toggle(this.checked);
+        $('#available-mps .mp[data-party="' + this.value + '"]').toggle(this.checked);
     });
 
 
