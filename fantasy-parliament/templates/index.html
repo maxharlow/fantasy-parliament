@@ -32,23 +32,15 @@
         <label for="email">Email</label>
         <input class="form-control" id="email" type="text" name="email" placeholder="you@example.com" />
 
-        <div class="col-xs-12">
-            <h2>Available MPs</h2>
-            <div class="filters">
-                <input type="text" placeholder="Name" class="form-control filter-name" /><br />
-            </div>
-            <div id="available-mps"></div>
-
-            <h2>Your cabinet</h2>
-            <div id="selected-mps"></div>
-            <div style="clear: both"></div>
-            <p><span id="placesleft">0</span> cabinet place(s) remaining</p>
-            <p>£<span id="budgetleft">0</span> budget remaining</p>
-        </div>
-
         <div class="row">
-            <div class="col-xs-6">
-                <div id="details">
+        	<div class="col-xs-5">
+				<div class="filters">
+					<input type="text" placeholder="Name" class="form-control filter-name" /><br />
+				</div>
+				<div id="available-mps"></div>
+			</div>
+			<div class="col-xs-3">
+				<div id="details">
                     <img class="mp-photo" />
                     <h2>
                         <span class="mp-details" data-detail="first_name"></span>
@@ -57,16 +49,21 @@
                     <b>Party:</b> <span class="mp-details" data-detail="party"></span><br />
                     <b>Constituency:</b> <span class="mp-details" data-detail="constituency"></span><br />
                     <b>Date elected:</b> <span class="mp-details" data-detail="entered_house"></span>
-                </div>
-            </div>
-
-            <div class="col-xs-6 save">
-                <button type="submit" class="btn btn-lg" id="save-mps">
+                </div>			
+	            <div class="col-xs-4 save">
+					<button type="submit" class="btn btn-lg" id="save-mps">
                     <span class="glyphicon glyphicon-save"></span> Save
                 </button>
             </div>
+			</div>
+			<div class="col-xs-4">
+				<h2>Your cabinet</h2>
+				<p id="budget">£<span id="budgetleft">0</span> budget left</p>
+				<p><span id="placesleft">0</span> cabinet place(s) remaining</p>
+				<div id="selected-mps"></div>
+				<div style="clear: both"></div>
+			</div>
         </div>
-
     </div><!-- /.container -->
 
     <div id="loader"><p class="h4"><img src="static/loading.gif" /> &nbsp;Loading</p></div>

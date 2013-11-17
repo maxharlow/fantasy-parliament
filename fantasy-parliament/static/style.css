@@ -67,3 +67,8 @@ body {
 #scoring .scoreValue {
 	float: right;
 }
+
+#budget {
+	font-weight: bold;
+	font-height: 130%;
+}

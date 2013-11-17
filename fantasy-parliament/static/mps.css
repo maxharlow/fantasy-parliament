@@ -1,11 +1,11 @@
 #available-mps {
     overflow-y: scroll;
-    height: 360px;
+    height: 460px;
 }
 
 #selected-mps {
-    width: 610px;
-    height: 365px;
+    width: 330px;
+    height: 490px;
     border: 2px dashed black;
     margin-bottom: 10px;
 }
@@ -23,8 +23,8 @@
 
 .mp {
     float: left;
-    width: 80px;
-    height: 170px;
+    width: 60px;
+    height: 150px;
     margin: 5px;
     display: table;
     border-radius: 5px;
@@ -35,7 +35,6 @@
 .mp[data-party="Labour"] {
     border: 5px solid #d50000;
     background-color: #d50000;
-    width: 90px;
 }
 .mp[data-party="Conservative"] {
     border: 5px solid #0087dc;
@@ -71,6 +70,7 @@
 }
 
 .mp-name {
+	font-size: 90%;
     height: 40px;
     text-align: center;
     overflow: hidden;
@@ -78,8 +78,8 @@
 
 .mp-photo > img {
     display: block;
-    width: 80px;
-    height: 120px;
+    width: 60px;
+    height: 90px;
 }
 label {
     white-space: nowrap;
