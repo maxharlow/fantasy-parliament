@@ -70,5 +70,9 @@ body {
 
 #budget {
 	font-weight: bold;
-	font-height: 130%;
+	font-size: 130%;
+}
+
+.container {
+	margin-left: 0;
 }
