@@ -77,6 +77,12 @@ body {
 	font-style: italic;
 	padding-bottom: 5px;
 }
+
+#scoring .scoreName a {
+	text-transform: lowercase;
+	text-overflow: ellipsis;
+}
+
 #scoring .scoreValue {
 	float: right;
 	font-size: 140%;
