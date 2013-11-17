@@ -29,7 +29,12 @@ def calculate():
     for user in get_users():
         calculate_score(user)
     return ''
-        
+
 @application.route('/user/<email>/scoring')
 def user_scoring(email):
-	return dumps(get_user(email)['score_breakdown'])
+    return dumps(get_user(email)['score_breakdown'])
+
+@application.route('/expenses')
+def expenses():
+    with open('fantasy-parliament/expenses.json') as expenses_file:
+        return expenses_file.read()
