@@ -23,26 +23,26 @@ function updateMPCount() {
 };
 
 $('#save-mps').click(function () {
-    var mps = _.map(selectedMPs.children(), function (mp) {
+    var member_ids = _.map(selectedMPs.children(), function (mp) {
         return parseInt(mp.value);
     });
     var email = $('#email').val();
 
-        if (cabinetSize() > maxCabinet)
-                alert('Reduce the size of your cabinet!');
-        else if (cabinetExpenses() > budget)
-                alert('Reduce your budget!')
-        else {
-                $.ajax({
-                        url: '/user/' + email,
-                        type: 'PUT',
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                                'email': email,
-                                'mps': mps
-                        })
-                });
-        }
+    if (cabinetSize() > maxCabinet)
+        alert('Reduce the size of your cabinet!');
+    else if (cabinetExpenses() > budget)
+        alert('Reduce your budget!')
+    else {
+        $.ajax({
+            url: '/user/' + email,
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'email': email,
+                'mps': member_ids
+            })
+        });
+    }
 });
 
 $('#email').change(function () {

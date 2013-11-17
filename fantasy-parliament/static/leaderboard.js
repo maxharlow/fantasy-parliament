@@ -12,8 +12,8 @@ $('.user').click(function () {
 function updateScoring(data) {
 	scoring.html('');
 
-	$.each(data, function(personId, scores) {
-		var name = mps[personId] ? mps[personId].full_name : personId;
+	$.each(data, function(memberId, scores) {
+		var name = mps[memberId] ? mps[memberId].full_name : memberId;
 		scoring.append('<dt>' + name + '<dt>');
 
 		$.each(scores, function() {
