@@ -110,7 +110,7 @@ function getExpenses(expenses, mpPersonId) {
         return mp.person_id == mpPersonId;
     });
     if (found === undefined) return 10000;
-    else return found.expenses;
+    else return Math.round(found.expenses);
 }
 
 function init() {
