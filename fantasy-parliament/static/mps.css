@@ -74,6 +74,8 @@
     height: 40px;
     text-align: center;
     overflow: hidden;
+    text-overflow: ellipsis;
+    width: 55px;
 }
 
 .mp-photo > img {
