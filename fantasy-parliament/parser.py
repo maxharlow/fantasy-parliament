@@ -114,7 +114,7 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
         public_whip=division.get('id')[25:]
         topic=public_whip.split('.')[2]
         
-        div_text=''
+        div_text='Unknown'
         for headings in major_heading:
             if headings.get('id')[25:].split('.')[2] == topic:
                 div_text=headings.text.strip()
