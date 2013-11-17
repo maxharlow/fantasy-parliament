@@ -118,4 +118,3 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
     
     return voting, speak, division_dict
 
-Q=Parser(2013,11,5)
