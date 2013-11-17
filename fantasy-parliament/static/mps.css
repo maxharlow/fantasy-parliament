@@ -4,7 +4,8 @@
 }
 
 #selected-mps {
-    height: 185px;
+    width: 610px;
+    height: 365px;
     border: 2px dashed black;
     margin-bottom: 10px;
 }
