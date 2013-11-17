@@ -6,18 +6,20 @@ var availableMPs = $('#available-mps');
 var selectedMPs = $('#selected-mps');
 
 function cabinetExpenses() {
-	return _.map(selectedMPs.children(), function () {
-			return $(this).data('expenses') })
-		.reduce(function (a,b) { return a + (b || 0) }, 0);
+    var expenses =_.map(selectedMPs.children(), function (mp) {
+        return $(mp).data('expenses')
+    });
+
+    return expenses.reduce(function (a,b) { return a + (b || 0) }, 0);
 }
 
 function cabinetSize() {
-	return selectedMPs.children().length;
+        return selectedMPs.children().length;
 }
 
 function updateMPCount() {
-	$('#placesleft').html(maxCabinet - cabinetSize());
-	$('#budgetleft').html(budget - cabinetExpenses());
+        $('#placesleft').html(maxCabinet - cabinetSize());
+        $('#budgetleft').html(budget - cabinetExpenses());
 };
 
 $('#save-mps').click(function () {
@@ -26,21 +28,21 @@ $('#save-mps').click(function () {
     });
     var email = $('#email').val();
 
-	if (cabinetSize() > maxCabinet)
-		alert('Reduce the size of your cabinet!');
-	else if (cabinetExpenses() > budget)
-		alert('Reduce your budget!')
-	else {
-		$.ajax({
-			url: '/user/' + email,
-			type: 'PUT',
-			contentType: 'application/json',
-			data: JSON.stringify({
-				'email': email,
-				'mps': mps
-			})
-		});
-	}
+        if (cabinetSize() > maxCabinet)
+                alert('Reduce the size of your cabinet!');
+        else if (cabinetExpenses() > budget)
+                alert('Reduce your budget!')
+        else {
+                $.ajax({
+                        url: '/user/' + email,
+                        type: 'PUT',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                                'email': email,
+                                'mps': mps
+                        })
+                });
+        }
 });
 
 $('#email').change(function () {
@@ -61,7 +63,7 @@ $('.filter-name').keyup(function () {
 var mp_template = $('#mp_template').html();
 var filter_template = $('#filter_template').html();
 
-function populate_mps(userMPs) {
+function populate_mps(expenses, userMPs) {
     var parties = [];
 
     selectedMPs.empty();
@@ -70,6 +72,8 @@ function populate_mps(userMPs) {
     userMPs = userMPs || [];
 
     _.each(mps, function (mp) {
+        mp.expenses = getExpenses(expenses, mp.person_id);
+
         // someone's image is undefined
         mp.image = mp.image || '';
         var ele = $(_.template(mp_template, mp));
@@ -100,14 +104,24 @@ function populate_mps(userMPs) {
     $('#loader').fadeOut();
 }
 
+function getExpenses(expenses, mpPersonId) {
+    var found = _.find(expenses, function (mp) {
+        return mp.person_id == mpPersonId;
+    });
+    if (found === undefined) return 8000;
+    else return found.expenses;
+}
+
 function init() {
     var email = $('#email').val();
     if (!email) {
-        populate_mps();
+        $.getJSON('/expenses', function (expenses) {
+            populate_mps(expenses);
+        });
     } else {
-        $.getJSON('/user/' + email)
-            .then(function (data) {
-                populate_mps(data.mps);
+        $.when($.getJSON('/user/' + email), $.getJSON('/expenses'))
+            .done(function (expenses, mpData) {
+                populate_mps(expenses[0], mpData[0].mps);
             });
     }
 }
