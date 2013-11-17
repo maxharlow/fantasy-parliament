@@ -109,7 +109,7 @@ function getExpenses(expenses, mpPersonId) {
     var found = _.find(expenses, function (mp) {
         return mp.person_id == mpPersonId;
     });
-    if (found === undefined) return 8000;
+    if (found === undefined) return 10000;
     else return found.expenses;
 }
 
