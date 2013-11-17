@@ -4,7 +4,8 @@ from lxml import etree
 
 PP_URL='http://ukparse.kforge.net/parldata/scrapedxml/debates/'
 
-class update_scores(object):
+class Parser(object):
+
     def __init__(self, start_year, start_month, start_day):
         self.start='%d-%d-%d' % (start_year, start_month, start_day)
         self.voting={} #matches speaker with list of vote objects
@@ -19,16 +20,16 @@ class update_scores(object):
                     foo=urlopen(xml_name).read()
                     print xml_name
                 except:
+                    print('oh no')
                     continue
-            self.voting, self.speak, self.divisions=search_Division(foo, self.voting, self.speak, self.divisions,date_string)
-            now_date=now_date + timedelta(days=1)        
-    
+            self.voting, self.speak, self.divisions=search_division(foo, self.voting, self.speak, self.divisions,date_string)
+            now_date=now_date + timedelta(days=1)
+
     def vote_score(self, id):
         if id in self.voting:
             score=len(self.voting[id])
         else:
             score=0
-        
         return score
 
     def speak_score(self, id):
@@ -37,15 +38,14 @@ class update_scores(object):
         else:
             score=0
         return score
-        
-            
-class vote(object):
+
+class Vote(object):
     def __init__(self, datestr, div_id, vote_type):
         self.date=datestr
         self.div_id=div_id
         self.vote_type=vote_type
     
-def search_Division(xml_string, voting, speak, division_dict, datestr):
+def search_division(xml_string, voting, speak, division_dict, datestr):
     root=etree.fromstring(xml_string)
     division_list=root.findall('division')
     for division in division_list:
@@ -53,18 +53,17 @@ def search_Division(xml_string, voting, speak, division_dict, datestr):
         if div_id not in division_dict:
             div_count=division.find('divisioncount')
             division_dict[div_id]=[div_count.get('ayes'), div_count.get('noes')]
-            
+
         for mplist in division.findall('mplist'):
             type=mplist.get('vote')
             for mp in mplist.iterchildren():
                 mp_id=mp.get('id')[-5:]
                 if mp_id in voting:
-                    voting[mp_id].append(vote(datestr, div_id, type))
+                    voting[mp_id].append(Vote(datestr, div_id, type))
                 else:
-                    voting[mp_id]=[vote(datestr, div_id, type)]
-    
+                    voting[mp_id]=[Vote(datestr, div_id, type)]
+
     speech_list=root.findall('speech')
-    
     for speech in speech_list:
         if not speech.get('nospeaker'):
             speaker=speech.get('speakerid')[-5:]

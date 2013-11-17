@@ -1,10 +1,10 @@
 from users import upsert_user
-from parser import update_scores
+from parser import Parser
 
 def test(mp_id):
     return 1
 
-parser_scorer = update_scores(2013, 09, 16)
+parser_scorer = Parser(2013, 9, 10)
 
 scorers = [test, parser_scorer.vote_score, parser_scorer.speak_score]
 
