@@ -15,17 +15,17 @@ class Parser(object):
         for delta in xrange(1,7):
             date_string=now_date.strftime('%Y-%m-%d')
             for i in ['a', 'b', 'c']:
-                xml_name=PP_URL+ 'debates'+ date_string + i + '.xml'
+                xml_name=PP_URL + 'debates' + date_string + i + '.xml'
                 try:
-                    foo=urlopen(xml_name).read()
-                    print('Opening: ' + +xml_name)
+                    xml=urlopen(xml_name).read()
+                    print('Opening: ' + xml_name)
                 except:
-                    print('Could not open debate: ' + xml_name)
                     continue
-            self.voting, self.speak, self.divisions=search_division(foo, self.voting, self.speak, self.divisions,date_string)
+            self.voting, self.speak, self.divisions=search_division(xml, self.voting, self.speak, self.divisions,date_string)
             now_date=now_date + timedelta(days=1)
 
     def vote_score(self, id):
+        print 'vs '+str(id)
         if id in self.voting:
             score=len(self.voting[id])
         else:
