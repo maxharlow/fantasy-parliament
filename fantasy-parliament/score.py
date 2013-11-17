@@ -7,14 +7,14 @@ def calculate_score(user):
     all_scores = {}
     total_score = 0
 
-    for mp in user['mps']:
+    for member_id in user['mps']:
         mp_scores = []
         for scorer in scorers:
-            results = scorer(mp)
+            results = scorer(member_id)
             for result in results:
                 total_score += result['score']
                 mp_scores.append(result)
-        all_scores[str(mp)] = mp_scores
+        all_scores[str(member_id)] = mp_scores
 
     user['score_breakdown'] = all_scores
     user['score'] = total_score

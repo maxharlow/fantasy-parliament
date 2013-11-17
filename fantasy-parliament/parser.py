@@ -32,21 +32,27 @@ class Parser(object):
             self.voting, self.speak, self.divisions=search_division(foo, self.voting, self.speak, self.divisions,date_string)
             now_date=now_date + timedelta(days=1)
 
-    def vote_score(self, id):
-        print 'vs '+ str(id)
+    def vote_score(self, member_id):
+        member_id = str(member_id)
+        print 'vs '+ member_id
         results = []
-        if id in self.voting:
-            for vote in self.voting[id]:
-                results.append({'description': 'voted', 'score': 1})
-        else:
-            results.append({'description': 'never voted', 'score': -3})
+        for division_id in self.divisions:
+            division = self.divisions[division_id]
+            if member_id in self.voting and division_id in self.voting[member_id]:
+                vote = self.voting[member_id][division_id]
+                desc = 'voted <b class="vote">' + vote['vote_type'] + '</b> on <a href="' + division['url'] + '">' + division['date'] + '</a>'
+                results.append({'description': desc, 'score': 1})
+            else:
+                desc = 'did not vote on <a href="' + division['url'] + '">' + division['date'] + '</a>'
+                results.append({'description': desc, 'score': -1})
         return results
 
-    def speak_score(self, id):
+    def speak_score(self, member_id):
+        member_id = str(member_id)
         results = []
-        if id in self.speak:
-            count=len(self.speak[id])
-            results.append({'description': 'spoke', 'score': count})
+        if member_id in self.speak:
+            count=len(self.speak[member_id])
+            results.append({'description': 'spoke ' + str(count) + ' time(s)', 'score': count})
         return results
         
 
