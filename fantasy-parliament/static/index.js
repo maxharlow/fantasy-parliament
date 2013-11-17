@@ -21,7 +21,7 @@ function updateMPCount() {
 };
 
 $('#save-mps').click(function () {
-    var mps = _.map(selectedMPs.children(), function (mp) {
+    var member_ids = _.map(selectedMPs.children(), function (mp) {
         return parseInt(mp.value);
     });
     var email = $('#email').val();
@@ -37,7 +37,7 @@ $('#save-mps').click(function () {
 			contentType: 'application/json',
 			data: JSON.stringify({
 				'email': email,
-				'mps': mps
+				'mps': member_ids
 			})
 		});
 	}
