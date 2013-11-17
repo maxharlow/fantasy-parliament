@@ -2,7 +2,7 @@ from users import upsert_user
 from parser import Parser
 
 def calculate_score(user):
-    parser = Parser(2013, 9, 10)
+    parser = Parser()
     scorers = [parser.vote_score, parser.speak_score]
     all_scores = {}
     total_score = 0

@@ -1,5 +1,5 @@
 from urllib2 import urlopen
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date as dt
 from lxml import etree
 # from pymongo import MongoClient
 
@@ -13,24 +13,26 @@ from lxml import etree
 PP_URL='http://ukparse.kforge.net/parldata/scrapedxml/debates/'
 
 class Parser(object):
-
-    def __init__(self, start_year, start_month, start_day):
-        self.start='%d-%d-%d' % (start_year, start_month, start_day)
+    def __init__(self):
+        
+        now_date=dt.today()
+        self.start=now_date.strftime('%Y-%m-%d')
         self.voting={} #matches speaker with list of vote objects
         self.speak={} #matches speaker with list of speech url
         self.divisions={} #matches url with ayes, noes
-        now_date=datetime.strptime(self.start, '%Y-%m-%d')
-        for delta in xrange(1,7):
+        
+        for delta in xrange(1,8):
             date_string=now_date.strftime('%Y-%m-%d')
             for i in ['a', 'b', 'c']:
                 xml_name=PP_URL+ 'debates'+ date_string + i + '.xml'
                 try:
                     foo=urlopen(xml_name).read()
                     print('Opened debate: ' + xml_name)
+                    self.voting, self.speak, self.divisions=search_division(foo, self.voting, self.speak, self.divisions,date_string)
                 except:
                     continue
-            self.voting, self.speak, self.divisions=search_division(foo, self.voting, self.speak, self.divisions,date_string)
-            now_date=now_date + timedelta(days=1)
+
+            now_date=now_date - timedelta(days=1)
 
     def vote_score(self, member_id):
         member_id = str(member_id)
