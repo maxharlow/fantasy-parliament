@@ -41,10 +41,10 @@ class Parser(object):
             if member_id in self.voting and division_id in self.voting[member_id]:
                 vote = self.voting[member_id][division_id]
                 desc = 'voted <b class="vote">' + vote['vote_type'] + '</b> on <a href="' + division['url'] + '">' + division['date'] + '</a>'
-                results.append({'description': desc, 'score': 1})
+                results.append({'type': 'vote', 'description': desc, 'score': 1})
             else:
-                desc = 'did not vote on <a href="' + division['url'] + '">' + division['date'] + '</a>'
-                results.append({'description': desc, 'score': -1})
+                desc = 'missed a vote on <a href="' + division['url'] + '">' + division['date'] + '</a>'
+                results.append({'type': 'absence', 'description': desc, 'score': -1})
         return results
 
     def speak_score(self, member_id):
@@ -52,7 +52,7 @@ class Parser(object):
         results = []
         if member_id in self.speak:
             count=len(self.speak[member_id])
-            results.append({'description': 'spoke ' + str(count) + ' time(s)', 'score': count})
+            results.append({'type': 'speech', 'description': 'spoke ' + str(count) + ' time(s)', 'score': count})
         return results
         
 
