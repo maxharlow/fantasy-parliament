@@ -88,7 +88,7 @@ function populate_mps(userMPs) {
     parties.sort();
 
     _.each(parties, function (party) {
-        $('.filters').append(_.template(filter_template, {'party': party}));
+        $('.party-filters').append(_.template(filter_template, {'party': party}));
     });
 
     $('.filter-party').change(function () {
