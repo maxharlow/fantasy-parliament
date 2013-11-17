@@ -44,7 +44,7 @@ class Vote(object):
         self.date=datestr
         self.div_id=div_id
         self.vote_type=vote_type
-    
+
 def search_division(xml_string, voting, speak, division_dict, datestr):
     root=etree.fromstring(xml_string)
     division_list=root.findall('division')

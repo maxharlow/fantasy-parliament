@@ -100,6 +100,7 @@ function populate_mps(mps) {
     });
 
     updateMPCount();
+    $('#loader').fadeOut();
 }
 
 function populate_details(person) {
