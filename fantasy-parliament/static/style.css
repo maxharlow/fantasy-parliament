@@ -59,6 +59,12 @@ body {
 #scoring dd[data-type="vote"]:before {
         content: url('vote.png');
 }
+
+#details {
+    display: none;
+    margin-top: 150px;
+}
+
 #scoring .scoreName {
 	padding-left: 15px;
 	font-style: italic;
@@ -69,5 +75,21 @@ body {
 
 #budget {
 	font-weight: bold;
-	font-height: 130%;
+	font-size: 130%;
+}
+
+.container {
+	margin-left: 0;
+}
+
+ul.comingsoon {
+	font-size: 150%;
+	list-style-type: none;
+}
+
+ul.comingsoon li:before {
+    content:"\2713\0020";
+    font-size: 140%;
+    font-weight: bold;
+    color: green;
 }
