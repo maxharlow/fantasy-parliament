@@ -152,3 +152,15 @@ $('#selected-mps, #available-mps').on('drop', function (e) {
     updateMPCount();
     e.preventDefault();
 });
+
+$('#selected-mps, #available-mps').on('mouseenter', '.mp', function () {
+    $('#details').show();
+    var mp = mps[parseInt($(this).data('member_id'))];
+    $('.mp-details').each(function () {
+        $(this).html(mp[$(this).data('detail')]);
+    });
+});
+
+$('#selected-mps, #available-mps').on('mouseleave', '.mp', function () {
+    $('#details').hide();
+});
