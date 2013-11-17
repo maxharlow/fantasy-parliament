@@ -24,8 +24,9 @@ function updateMPCount() {
 
 $('#save-mps').click(function () {
     var member_ids = _.map(selectedMPs.children(), function (mp) {
-        return parseInt(mp.value);
+        return parseInt($(mp).data('member_id'));
     });
+
     var email = $('#email').val();
 
     if (cabinetSize() > maxCabinet)
