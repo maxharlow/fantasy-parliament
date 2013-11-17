@@ -68,9 +68,14 @@ body {
 #scoring .scoreName {
 	padding-left: 15px;
 	font-style: italic;
+	padding-bottom: 5px;
 }
 #scoring .scoreValue {
 	float: right;
+	font-size: 140%;
+	font-weight: bold;
+	padding-right: 10px;
+	padding-top: 3px;
 }
 
 #budget {
