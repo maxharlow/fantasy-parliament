@@ -33,7 +33,7 @@ class Parser(object):
             now_date=now_date + timedelta(days=1)
 
     def vote_score(self, id):
-        print 'vs '+str(id)
+        print 'vs '+ str(id)
         results = []
         if id in self.voting:
             for vote in self.voting[id]:
@@ -52,7 +52,7 @@ class Parser(object):
 
         
 def search_division(xml_string, voting, speak, division_dict, datestr):
-    def add_vote(a_mp, a_div_url, a_type, a_maj):
+    def add_vote(a_mp, a_div_id, a_div_url, a_type, a_maj):
         mp_id=a_mp.get('id')[-5:]
         tmp={}
         tmp['date']=datestr
@@ -64,20 +64,23 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
             tmp['min-maj']='Minority'
         
         if mp_id in voting:
-            voting[mp_id].append(tmp)
+            voting[mp_id][a_div_id]=tmp
         else:
-            voting[mp_id]=[tmp]
+            sub_tmp={}
+            sub_tmp[a_div_id]=tmp
+            voting[mp_id]=sub_tmp
+            
     
     def add_division(a_div_url, num_ayes, num_noes):
-        div_id=a_div_url.split('_')[1]
-        if div_id not in division_dict:
+        a_div_id=a_div_url.split('_')[1]
+        if a_div_id not in division_dict:
             tmp={}
             tmp['url']=a_div_url
             tmp['date']=datestr
             tmp['ayes']=num_ayes
             tmp['noes']=num_noes     
             
-            division_dict[div_id]=tmp
+            division_dict[a_div_id]=tmp
                 
             
     def add_speech(a_speech):
@@ -95,6 +98,7 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
     division_list=root.findall('division')
     for division in division_list:
         div_url=division.get('url')
+        div_id=div_url.split('_')[1]
         div_count=division.find('divisioncount')
         ayes=div_count.get('ayes')
         noes=div_count.get('noes')
@@ -108,7 +112,7 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
         for mplist in division.findall('mplist'):
             vote_type=mplist.get('vote')
             for mp in mplist.iterchildren():
-                add_vote(mp, div_url, vote_type, major)
+                add_vote(mp, div_id, div_url, vote_type, major)
 
                 
                 
@@ -117,4 +121,3 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
         add_speech(speech)
     
     return voting, speak, division_dict
-
