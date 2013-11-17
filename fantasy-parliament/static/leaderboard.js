@@ -12,8 +12,8 @@ $('.user').click(function () {
 function updateScoring(data) {
 	scoring.html('');
 
-	$.each(data, function(mp, scores) {
-		scoring.append('<dt>' + mp + '<dt>');
+	$.each(data, function(personId, scores) {
+		scoring.append('<dt>' + mps[personId].full_name + '<dt>');
 
 		$.each(scores, function(scoreName, scoreValue) {
 			scoring.append('<dd><span class="scoreName">' + scoreName + '</span><span class="scoreValue">' + scoreValue + '</span></dd>');
