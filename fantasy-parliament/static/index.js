@@ -121,7 +121,7 @@ function init() {
         });
     } else {
         $.when($.getJSON('/user/' + email), $.getJSON('/expenses'))
-            .done(function (expenses, mpData) {
+            .done(function (mpData, expenses) {
                 populate_mps(expenses[0], mpData[0].mps);
             });
     }
