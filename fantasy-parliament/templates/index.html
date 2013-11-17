@@ -31,7 +31,7 @@
 
     <div class="container">
         <label for="email">Email</label>
-        <input class="form-control" id="email" type="text" name="email" placeholder="you@example.com" />
+        <input class="form-control" id="email" type="text" name="email" placeholder="you@example.com" /><br />
 
         <div class="row">
         	<div class="col-xs-5">
@@ -43,20 +43,15 @@
 			</div>
 			<div class="col-xs-3">
 				<div id="details">
-                    <img class="mp-photo" />
                     <h2>
                         <span class="mp-details" data-detail="first_name"></span>
                         <span class="mp-details" data-detail="last_name"></span>
                     </h2>
                     <b>Party:</b> <span class="mp-details" data-detail="party"></span><br />
                     <b>Constituency:</b> <span class="mp-details" data-detail="constituency"></span><br />
-                    <b>Date elected:</b> <span class="mp-details" data-detail="entered_house"></span>
-                </div>			
-	            <div class="col-xs-4 save">
-					<button type="submit" class="btn btn-lg" id="save-mps">
-                    <span class="glyphicon glyphicon-save"></span> Save
-                </button>
-            </div>
+                    <b>Date elected:</b> <span class="mp-details" data-detail="entered_house"></span><br />
+                    <b>Expenses:</b> £<span class="mp-details" data-detail="expenses"></span>
+                </div>
 			</div>
 			<div class="col-xs-4">
 				<h2>Your cabinet</h2>
@@ -64,6 +59,9 @@
 				<p><span id="placesleft">0</span> cabinet place(s) remaining</p>
 				<div id="selected-mps"></div>
 				<div style="clear: both"></div>
+					<button type="submit" class="btn btn-lg" id="save-mps">
+                    <span class="glyphicon glyphicon-save"></span> Save
+                </button>
 			</div>
         </div>
     </div><!-- /.container -->

@@ -60,6 +60,12 @@ body {
 #scoring dd[data-type="vote"]:before {
         content: url('https://github.global.ssl.fastly.net/images/icons/emoji/+1.png');
 }
+
+#details {
+    display: none;
+    margin-top: 150px;
+}
+
 #scoring .scoreName {
 	padding-left: 15px;
 	font-style: italic;

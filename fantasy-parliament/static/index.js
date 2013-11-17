@@ -54,10 +54,10 @@ $('#email').val(window.localStorage['email']);
 
 $('.filter-name').keyup(function () {
     if (this.value) {
-        $('.mp').hide();
-        $('.mp[data-name^="' + this.value + '"]').show();
+        $('#available-mps .mp').hide();
+        $('#available-mps .mp[data-name^="' + this.value + '"]').show();
     } else {
-        $('.mp').show();
+        $('#available-mps .mp').show();
     }
 });
 
@@ -97,7 +97,7 @@ function populate_mps(expenses, userMPs) {
     });
 
     $('.filter-party').change(function () {
-        $('.mp[data-party="' + this.value + '"]').toggle(this.checked);
+        $('#available-mps .mp[data-party="' + this.value + '"]').toggle(this.checked);
     });
 
 
@@ -110,7 +110,7 @@ function getExpenses(expenses, mpPersonId) {
         return mp.person_id == mpPersonId;
     });
     if (found === undefined) return 10000;
-    else return found.expenses;
+    else return Math.round(found.expenses);
 }
 
 function init() {
@@ -151,4 +151,16 @@ $('#selected-mps, #available-mps').on('drop', function (e) {
     }
     updateMPCount();
     e.preventDefault();
+});
+
+$('#selected-mps, #available-mps').on('mouseenter', '.mp', function () {
+    $('#details').show();
+    var mp = mps[parseInt($(this).data('member_id'))];
+    $('.mp-details').each(function () {
+        $(this).html(mp[$(this).data('detail')]);
+    });
+});
+
+$('#selected-mps, #available-mps').on('mouseleave', '.mp', function () {
+    $('#details').hide();
 });
