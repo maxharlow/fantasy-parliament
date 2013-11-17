@@ -51,7 +51,13 @@ body {
 
 #scoring dt {
 	background-color: #cccccc;
+    padding: 2px;
 }
+
+dt + dt {
+    display: none;
+}
+
 #scoring dd {
 	background-color: #eeeeee;
 }
