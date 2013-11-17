@@ -1,14 +1,9 @@
 from users import upsert_user
 from parser import Parser
 
-def test(mp_id):
-    return {'description': 'test', 'score': 1}
-
-parser_scorer = Parser(2013, 9, 10)
-
-scorers = [test, parser_scorer.vote_score, parser_scorer.speak_score]
-
 def calculate_score(user):
+    parser = Parser(2013, 9, 10)
+    scorers = [parser.vote_score, parser.speak_score]
     all_scores = {}
     total_score = 0
 

@@ -80,9 +80,9 @@ function populate_mps(userMPs) {
 	});
 
     $.each(sortedMPs, function () {
-        var ele = $('<option value="' + this.person_id + '" data-party="' + this.party + '">' + this.first_name + ' ' + this.last_name + ' [' + this.party + ']</option>');
+        var ele = $('<option value="' + this.member_id + '" data-party="' + this.party + '">' + this.first_name + ' ' + this.last_name + ' [' + this.party + ']</option>');
 
-        if (userMPs.indexOf(parseInt(this.person_id)) !== -1) {
+        if (userMPs.indexOf(parseInt(this.member_id)) !== -1) {
             selectedMPs.append(ele);
         } else {
             availableMPs.append(ele);
