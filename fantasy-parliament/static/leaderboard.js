@@ -13,10 +13,11 @@ function updateScoring(data) {
 	scoring.html('');
 
 	$.each(data, function(personId, scores) {
-		scoring.append('<dt>' + mps[personId].full_name + '<dt>');
+		var name = mps[personId] ? mps[personId].full_name : personId;
+		scoring.append('<dt>' + name + '<dt>');
 
-		$.each(scores, function(scorer, result) {
-			scoring.append('<dd><span class="scoreName">' + result.description + '</span><span class="scoreValue">' + result.score + '</span></dd>');
+		$.each(scores, function() {
+			scoring.append('<dd><span class="scoreName">' + this.description + '</span><span class="scoreValue">' + this.score + '</span></dd>');
 		});
 	});
 };

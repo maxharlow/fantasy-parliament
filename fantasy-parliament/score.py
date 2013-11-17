@@ -8,12 +8,12 @@ def calculate_score(user):
     total_score = 0
 
     for mp in user['mps']:
-        mp_scores = {}
+        mp_scores = []
         for scorer in scorers:
-            result = scorer(mp)
-            if result is not None:
+            results = scorer(mp)
+            for result in results:
                 total_score += result['score']
-                mp_scores[scorer.__name__] = result
+                mp_scores.append(result)
         all_scores[str(mp)] = mp_scores
 
     user['score_breakdown'] = all_scores
