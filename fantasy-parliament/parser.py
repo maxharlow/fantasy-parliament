@@ -18,9 +18,9 @@ class Parser(object):
                 xml_name=PP_URL+ 'debates'+ date_string + i + '.xml'
                 try:
                     foo=urlopen(xml_name).read()
-                    print xml_name
+                    print('Opening: ' + +xml_name)
                 except:
-                    print('oh no')
+                    print('Could not open debate: ' + xml_name)
                     continue
             self.voting, self.speak, self.divisions=search_division(foo, self.voting, self.speak, self.divisions,date_string)
             now_date=now_date + timedelta(days=1)
