@@ -1,23 +1,19 @@
 from users import upsert_user
 from parser import Parser
 
-def test(mp_id):
-    return 1
-
-parser_scorer = Parser(2013, 9, 10)
-
-scorers = [test, parser_scorer.vote_score, parser_scorer.speak_score]
-
 def calculate_score(user):
+    parser = Parser(2013, 9, 10)
+    scorers = [parser.vote_score, parser.speak_score]
     all_scores = {}
     total_score = 0
 
     for mp in user['mps']:
-        mp_scores = {}
+        mp_scores = []
         for scorer in scorers:
-            score = scorer(mp)
-            total_score += score
-            mp_scores[scorer.__name__] = score
+            results = scorer(mp)
+            for result in results:
+                total_score += result['score']
+                mp_scores.append(result)
         all_scores[str(mp)] = mp_scores
 
     user['score_breakdown'] = all_scores

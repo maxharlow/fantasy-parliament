@@ -33,24 +33,22 @@ class Parser(object):
             now_date=now_date + timedelta(days=1)
 
     def vote_score(self, id):
+        print 'vs '+str(id)
+        results = []
         if id in self.voting:
-            score=len(self.voting[id])
+            for vote in self.voting[id]:
+                results.append({'description': 'voted', 'score': 1})
         else:
-            score=0
-        return score
+            results.append({'description': 'never voted', 'score': -3})
+        return results
 
     def speak_score(self, id):
+        results = []
         if id in self.speak:
-            score=len(self.speak[id])
-        else:
-            score=0
-        return score
+            count=len(self.speak[id])
+            results.append({'description': 'spoke', 'score': count})
+        return results
         
-class Vote(object):
-    def __init__(self, datestr, div_id, vote_type):
-        self.date=datestr
-        self.div_id=div_id
-        self.vote_type=vote_type
 
         
 def search_division(xml_string, voting, speak, division_dict, datestr):
