@@ -42,10 +42,10 @@ class Parser(object):
             division = self.divisions[division_id]
             if member_id in self.voting and division_id in self.voting[member_id]:
                 vote = self.voting[member_id][division_id]
-                desc = 'voted <b class="vote">' + vote['vote_type'] + '</b> on <a href="' + division['url'] + '">' + division['date'] + '</a>'
+                desc = 'voted <b class="vote">' + vote['vote_type'] + '</b> on <a href="' + division['url'] + '">' + division['header'] + '</a>'
                 results.append({'type': 'vote', 'description': desc, 'score': 1})
             else:
-                desc = 'missed a vote on <a href="' + division['url'] + '">' + division['date'] + '</a>'
+                desc = 'missed a vote on <a href="' + division['url'] + '">' + division['header'] + '</a>'
                 results.append({'type': 'absence', 'description': desc, 'score': -1})
         return results
 
@@ -79,11 +79,12 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
             voting[mp_id]=sub_tmp
             
     
-    def add_division(a_div_url, num_ayes, num_noes):
+    def add_division(a_div_url, a_div_text, num_ayes, num_noes):
         a_div_id=a_div_url.split('_')[1]
         if a_div_id not in division_dict:
             tmp={}
             tmp['url']=a_div_url
+            tmp['header']=a_div_text
             tmp['date']=datestr
             tmp['ayes']=num_ayes
             tmp['noes']=num_noes     
@@ -104,9 +105,20 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
     root=etree.fromstring(xml_string)
     
     division_list=root.findall('division')
+    major_heading=root.findall('major-heading')
+    
     for division in division_list:
         div_url=division.get('url')
         div_id=div_url.split('_')[1]
+        
+        public_whip=division.get('id')[25:]
+        topic=public_whip.split('.')[2]
+        
+        div_text=''
+        for headings in major_heading:
+            if headings.get('id')[25:].split('.')[2] == topic:
+                div_text=headings.text.strip()
+
         div_count=division.find('divisioncount')
         ayes=div_count.get('ayes')
         noes=div_count.get('noes')
@@ -115,7 +127,7 @@ def search_division(xml_string, voting, speak, division_dict, datestr):
         else:
             major='no'
             
-        add_division(div_url,ayes,noes)
+        add_division(div_url,div_text, ayes,noes)
         
         for mplist in division.findall('mplist'):
             vote_type=mplist.get('vote')
