@@ -27,17 +27,19 @@ class Parser(object):
 
     def vote_score(self, id):
         if id in self.voting:
-            score=len(self.voting[id])
+            count = len(self.voting[id])
+            result={'description': 'voted', 'score': count}
         else:
-            score=0
-        return score
+            result={'description': 'did not vote', 'score': 0}
+        return result
 
     def speak_score(self, id):
         if id in self.speak:
-            score=len(self.speak[id])
+            count=len(self.speak[id])
+            result={'description': 'spoke', 'score': count}
         else:
-            score=0
-        return score
+            result=None
+        return result
 
 class Vote(object):
     def __init__(self, datestr, div_id, vote_type):
