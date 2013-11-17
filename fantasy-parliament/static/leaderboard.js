@@ -17,7 +17,7 @@ function updateScoring(data) {
 		scoring.append('<dt>' + name + '<dt>');
 
 		$.each(scores, function() {
-			scoring.append('<dd><span class="scoreName">' + this.description + '</span><span class="scoreValue">' + this.score + '</span></dd>');
+			scoring.append('<dd data-type="' + this.type + '" data-score="' + this.score + '"><span class="scoreName">' + this.description + '</span><span class="scoreValue">' + this.score + '</span></dd>');
 		});
 	});
 };
