@@ -75,6 +75,7 @@ function populate_mps(userMPs) {
     });
 
     updateMPCount();
+    $('#loader').fadeOut();
 }
 
 function populate_details(mp) {
