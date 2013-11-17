@@ -1,0 +1,87 @@
+#available-mps {
+    overflow-y: scroll;
+    height: 360px;
+}
+
+#selected-mps {
+    height: 185px;
+    border: 2px dashed black;
+    margin-bottom: 10px;
+}
+
+.mp.dragging > * {
+    visibility: hidden;
+}
+
+.mp.dragging {
+    border-radius: 0;
+    border: 2px dashed black !important;
+    background: none !important;
+    width: 90px;
+}
+
+.mp {
+    float: left;
+    width: 80px;
+    height: 170px;
+    margin: 5px;
+    display: table;
+    border-radius: 5px;
+    border: 5px solid transparent;
+    color: black;
+    cursor: move;
+}
+.mp[data-party="Labour"] {
+    border: 5px solid #d50000;
+    background-color: #d50000;
+    width: 90px;
+}
+.mp[data-party="Conservative"] {
+    border: 5px solid #0087dc;
+    background-color: #0087dc;
+}
+.mp[data-party="Liberal Democrat"] {
+    border: 5px solid #FDBB30;
+    background-color: #FDBB30;
+}
+.mp[data-party="Scottish National Party"] {
+    border: 5px solid #FFF95D;
+    background-color: #FFF95D;
+}
+.mp[data-party="Green"] {
+    border: 5px solid #008066;
+    background-color: #008066;
+}
+.mp[data-party="Plaid Cymru"] {
+    border: 5px solid #3F8428;
+    background-color: #3F8428;
+}
+.mp[data-party="Sinn Fein"] {
+    border: 5px solid #006837;
+    background-color: #006837;
+}
+.mp[data-party="DUP"] {
+    border: 5px solid #d46a4c;
+    background-color: #d46a4c;
+}
+
+.mp > div {
+    display: table-row;
+}
+
+.mp-name {
+    height: 40px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.mp-photo > img {
+    display: block;
+    width: 80px;
+    height: 120px;
+}
+label {
+    white-space: nowrap;
+    font-weight: normal;
+    padding-right: 15px;
+}

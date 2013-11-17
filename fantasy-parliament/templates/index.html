@@ -4,6 +4,7 @@
     <title>Fantasy Parliament</title>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <link rel="stylesheet" type="text/css" href="/static/mps.css" />
 </head>
 <body>
 
@@ -30,29 +31,19 @@
     <div class="container">
         <label for="email">Email</label>
         <input class="form-control" id="email" type="text" name="email" placeholder="you@example.com" />
-        <div class="row">
-            <div class="col-xs-4">
-            	<h2>Available MPs</h2>
-                <select class="list-mps form-control" id="available-mps" multiple>
-                </select>
-            </div>
 
-            <div class="col-xs-4 controls">
-                <button type="button" class="btn btn-lg" id="remove-mps">
-                    <span class="glyphicon glyphicon-chevron-left"></span> Remove
-                </button>
-                <button type="button" class="btn btn-lg" id="add-mps">
-                    <span class="glyphicon glyphicon-chevron-right"></span> Add
-                </button>
+        <div class="col-xs-12">
+            <h2>Available MPs</h2>
+            <div class="filters">
+                <input type="text" placeholder="Name" class="form-control filter-name" /><br />
             </div>
+            <div id="available-mps"></div>
 
-            <div class="col-xs-4">
-	           	<h2>Your cabinet</h2>
-                <select class="list-mps form-control" id="selected-mps" multiple>
-                </select>
-                <p><span id="placesleft">0</span> cabinet place(s) remaining</p>
-                <p>£<span id="budgetleft">0</span> budget remaining</p>
-            </div>
+            <h2>Your cabinet</h2>
+            <div id="selected-mps"></div>
+            <div style="clear: both"></div>
+            <p><span id="placesleft">0</span> cabinet place(s) remaining</p>
+            <p>£<span id="budgetleft">0</span> budget remaining</p>
         </div>
 
         <div class="row">
@@ -79,6 +70,16 @@
     </div><!-- /.container -->
 
     <div id="loader"><p class="h4"><img src="static/loading.gif" /> &nbsp;Loading</p></div>
+
+    <script type="text/template" id="mp_template">
+        <div draggable="true" class="mp" data-name="<%= first_name %> <%= last_name %>" data-party="<%= party %>">
+            <div><div class="mp-name"><%= first_name %> <%= last_name %></div></div>
+            <div class="mp-photo"><img src="http://www.theyworkforyou.com<%= image %>" /></div>
+        </div>
+    </script>
+    <script type="text/template" id="filter_template">
+        <label><input checked type="checkbox" class="filter-party" value="<%= party %>"> <%= party %></label>
+    </script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="static/underscore.js"></script>

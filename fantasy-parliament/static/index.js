@@ -20,25 +20,6 @@ function updateMPCount() {
 	$('#budgetleft').html(budget - cabinetExpenses());
 };
 
-$('#add-mps').click(function () {
-    availableMPs.children(':selected').each(function () {
-        selectedMPs.append(this);
-        updateMPCount();
-    });
-});
-
-$('#remove-mps').click(function () {
-    selectedMPs.children(':selected').each(function () {
-        availableMPs.append(this);
-        updateMPCount();
-    });
-});
-
-$('#available-mps, #selected-mps').change(function () {
-    var id = $(this).children(':selected').val();
-    populate_details(mps[id]);
-});
-
 $('#save-mps').click(function () {
     var mps = _.map(selectedMPs.children(), function (mp) {
         return parseInt(mp.value);
@@ -68,38 +49,55 @@ $('#email').change(function () {
 
 $('#email').val(window.localStorage['email']);
 
+$('.filter-name').keyup(function () {
+    if (this.value) {
+        $('.mp').hide();
+        $('.mp[data-name^="' + this.value + '"]').show();
+    } else {
+        $('.mp').show();
+    }
+});
+
+var mp_template = $('#mp_template').html();
+var filter_template = $('#filter_template').html();
+
 function populate_mps(userMPs) {
+    var parties = [];
+
     selectedMPs.empty();
     availableMPs.empty();
-    $('#details').fadeOut();
 
     userMPs = userMPs || [];
 
-	var sortedMPs = _.sortBy(mps, function(each) {
-		return each.last_name;
-	});
+    _.each(mps, function (mp) {
+        // someone's image is undefined
+        mp.image = mp.image || '';
+        var ele = $(_.template(mp_template, mp));
 
-    $.each(sortedMPs, function () {
-        var ele = $('<option value="' + this.member_id + '" data-party="' + this.party + '">' + this.first_name + ' ' + this.last_name + ' [' + this.party + ']</option>');
+        if (parties.indexOf(mp.party) === -1) {
+            parties.push(mp.party);
+        }
 
-        if (userMPs.indexOf(parseInt(this.member_id)) !== -1) {
+        if (userMPs.indexOf(parseInt(mp.member_id)) !== -1) {
             selectedMPs.append(ele);
         } else {
             availableMPs.append(ele);
         }
     });
 
-    updateMPCount();
-    $('#loader').fadeOut();
-}
+    parties.sort();
 
-function populate_details(mp) {
-    $('.mp-photo').attr('src', 'http://www.theyworkforyou.com' + mp.image);
-    $('.mp-details').each(function () {
-        $(this).html(mp[$(this).data('detail')]);
+    _.each(parties, function (party) {
+        $('.filters').append(_.template(filter_template, {'party': party}));
     });
 
-    $('#details').fadeIn();
+    $('.filter-party').change(function () {
+        $('.mp[data-party="' + this.value + '"]').toggle(this.checked);
+    });
+
+
+    updateMPCount();
+    $('#loader').fadeOut();
 }
 
 function init() {
@@ -115,3 +113,27 @@ function init() {
 }
 
 init();
+
+$('#selected-mps, #available-mps').on('dragstart', '.mp', function (e) {
+    var data = $(this).clone().wrap('<div></div>').parent().html();
+    var that = this;
+    setTimeout(function () {
+        $(that).addClass('dragging target');
+    }, 0);
+});
+
+$('#selected-mps, #available-mps').on('dragend', '.mp', function () {
+    $(this).removeClass('dragging target');
+});
+
+$('#selected-mps, #available-mps').on('dragover', function (e) {
+    e.preventDefault();
+});
+
+$('#selected-mps, #available-mps').on('drop', function (e) {
+    if ($(this).children('.target').length === 0) {
+        $(this).append($('.target'));
+    }
+    updateMPCount();
+    e.preventDefault();
+});

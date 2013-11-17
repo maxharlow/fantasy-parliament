@@ -39,52 +39,6 @@ body {
     text-align: right;
 }
 
-/* http://blog.richardallen.co.uk/uk-political-party-web-colours/ */
-option[data-party="Labour"] {
-	background-color: #d50000;
-	color: white;
-}
-option[data-party="Conservative"] {
-	background-color: #0087dc;
-	color: white;
-}
-option[data-party="Liberal Democrat"] {
-	background-color: #FDBB30;
-	color: black;
-}
-option[data-party="Scottish National Party"] {
-	background-color: #FFF95D;
-	color: black;
-}
-option[data-party="Green"] {
-	background-color: #008066;
-	color: white;
-}
-option[data-party="Plaid Cymru"] {
-	background-color: #3F8428;
-	color: white;
-}
-option[data-party="Sinn Fein"] {
-	background-color: #006837;
-	color: white;
-}
-option[data-party="DUP"] {
-    background-color: #d46a4c;
-    color: black;
-}
-
-.mp-photo {
-    float: left;
-    margin-right: 10px;
-    width: 100px;
-}
-
-#details {
-    display: none;
-}
-
-
-
 #leaderboard .user:hover td {
 	background-color: #D8EEFE;
 	cursor: pointer;
