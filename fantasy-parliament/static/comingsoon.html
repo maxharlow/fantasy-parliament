@@ -3,7 +3,7 @@
 <head>
     <title>Fantasy Parliament</title>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 
@@ -21,44 +21,24 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Select cabinet</a></li>
-            <li class="active"><a href="/leaderboard">Leaderboard</a></li>
-            <li><a href="/static/comingsoon.html">Coming Soon</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
+            <li class="active"><a href="/static/comingsoon.html">Coming Soon</a></li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="container">
-        <h1>Leaderboard</h1>
-        <div class="row">
-        	<div class="col-xs-6">
-				<table class="table table-striped" id="leaderboard">
-					<thead>
-						<tr>
-							<th>Email address</th>
-							<th>Score</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for user in users %}
-							<tr class="user">
-								<td class="email">{{ user.email }}</td>
-								<td>{{ user.score }}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			<div class="col-xs-6">
-				<dl id="scoring"></dl>
-			</div>
-		</div>
-    </div>
+    	<h1>New features coming soon!</h1>
+        <ul class="comingsoon">
+        	<li>Shuffle MPs between your backbench and cabinet weekly to maximize your score</li>
+        	<li>Details on each week's major debates and votes so you can plan your reshuffles</li>
+        	<li>If an MP resigns or is ousted while sitting on your cabinet you're score will suffer</li>
+        	<li>Links to media coverage of issues and MPs</li>
+        </ul>
+    </div><!-- /.container -->
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="static/underscore.js"></script>
-    <script src="static/mps.js"></script>
-    <script src="static/twfyapi.js"></script>
-    <script src="static/leaderboard.js"></script>
+    <script src="underscore.js"></script>
 </body>
 </html>

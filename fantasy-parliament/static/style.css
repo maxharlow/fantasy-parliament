@@ -76,3 +76,15 @@ body {
 .container {
 	margin-left: 0;
 }
+
+ul.comingsoon {
+	font-size: 150%;
+	list-style-type: none;
+}
+
+ul.comingsoon li:before {
+    content:"\2713\0020";
+    font-size: 140%;
+    font-weight: bold;
+    color: green;
+}
