@@ -35,8 +35,8 @@ $('#remove-mps').click(function () {
 });
 
 $('#available-mps, #selected-mps').change(function () {
-    var option = $(this).children(':selected').first();
-    twfy.query('getPerson', {'callback': 'populate_details', 'id': option.val()});
+    var id = $(this).children(':selected').val();
+    populate_details(mps[id]);
 });
 
 $('#save-mps').click(function () {
@@ -68,29 +68,19 @@ $('#email').change(function () {
 
 $('#email').val(window.localStorage['email']);
 
-var userMPs = [];
+function populate_mps(userMPs) {
+    selectedMPs.empty();
+    availableMPs.empty();
+    $('#details').fadeOut();
 
-(function () {
-    var email = $('#email').val();
-    if (!email) {
-        twfy.query('getMPs', {'callback': 'populate_mps'});
-    } else {
-        $.getJSON('/user/' + email)
-            .then(function (data) {
-                userMPs = data.mps || [];
-                twfy.query('getMPs', {'callback': 'populate_mps'});
-            });
-    }
-})();
+    userMPs = userMPs || [];
 
-function populate_mps(mps) {
 	var sortedMPs = _.sortBy(mps, function(each) {
-		// drop the first name
-		return each.name.replace(/^\w+ /, '');
+		return each.last_name;
 	});
 
     $.each(sortedMPs, function () {
-        var ele = $('<option value="' + this.person_id + '" data-party="' + this.party + '">' + this.name + ' [' + this.party + ']</option>');
+        var ele = $('<option value="' + this.person_id + '" data-party="' + this.party + '">' + this.first_name + ' ' + this.last_name + ' [' + this.party + ']</option>');
 
         if (userMPs.indexOf(parseInt(this.person_id)) !== -1) {
             selectedMPs.append(ele);
@@ -103,14 +93,25 @@ function populate_mps(mps) {
     $('#loader').fadeOut();
 }
 
-function populate_details(person) {
-    person = person[0]
-
-    $('.mp-photo').attr('src', 'http://www.theyworkforyou.com' + person.image);
-
+function populate_details(mp) {
+    $('.mp-photo').attr('src', 'http://www.theyworkforyou.com' + mp.image);
     $('.mp-details').each(function () {
-        $(this).html(person[$(this).data('detail')]);
+        $(this).html(mp[$(this).data('detail')]);
     });
 
     $('#details').fadeIn();
 }
+
+function init() {
+    var email = $('#email').val();
+    if (!email) {
+        populate_mps();
+    } else {
+        $.getJSON('/user/' + email)
+            .then(function (data) {
+                populate_mps(data.mps);
+            });
+    }
+}
+
+init();
